@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitClub | Kabinet</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f8fafc;
+            color: #0f172a;
+        }
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 24px;
+        }
+        .card {
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+            padding: 28px;
+        }
+        .title {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        .status-box {
+            background: linear-gradient(135deg, #dcfce7, #dbeafe);
+            border: 1px solid #bbf7d0;
+            border-radius: 14px;
+            padding: 22px;
+            margin-top: 22px;
+        }
+        .status-label {
+            font-size: 0.8rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #334155;
+        }
+        .status-text {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin: 10px 0;
+        }
+        .meta {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+            margin-top: 20px;
+        }
+        .meta-item {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 16px;
+        }
+        .meta-item strong {
+            display: block;
+            color: #475569;
+            margin-bottom: 6px;
+        }
+        .warn {
+            color: #b45309;
+        }
+        .ok {
+            color: #166534;
+        }
+        .danger {
+            color: #b91c1c;
+        }
+        .link {
+            display: inline-block;
+            margin-top: 18px;
+            text-decoration: none;
+            color: #1d4ed8;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            {% if messages %}
+                <div class="messages" style="margin-bottom: 20px;">
+                    {% for message in messages %}
+                        <div class="alert {% if message.tags %}{{ message.tags }}{% endif %}" style="padding: 12px 14px; border-radius: 10px; margin-bottom: 10px; background: {% if 'error' in message.tags %}#fee2e2{% elif 'success' in message.tags %}#dcfce7{% else %}#e0f2fe{% endif %}; border: 1px solid {% if 'error' in message.tags %}#fca5a5{% elif 'success' in message.tags %}#86efac{% else %}#7dd3fc{% endif %}; color: #0f172a; font-weight: 600;">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <div class="title">Shaxsiy kabinet</div>
+            <p>Salom, <strong>{{ user.username }}</strong>!</p>
+
+            {% if subscription %}
+                <div class="status-box">
+                    <div class="status-label">Obuna holati</div>
+                    <div class="status-text {% if subscription.days_left <= 5 %}warn{% elif subscription.days_left <= 0 %}danger{% else %}ok{% endif %}">
+                        {{ subscription.status_message }}
+                    </div>
+                    <p>Hozirda {{ subscription.days_left }} kun qoldi.</p>
+                </div>
+
+                <div class="meta">
+                    <div class="meta-item">
+                        <strong>Abonement turi</strong>
+                        {{ subscription.plan.name }}
+                    </div>
+                    <div class="meta-item">
+                        <strong>Narxi</strong>
+                        {{ subscription.plan.price }} UZS
+                    </div>
+                    <div class="meta-item">
+                        <strong>Boshlanish sanasi</strong>
+                        {{ subscription.start_date }}
+                    </div>
+                    <div class="meta-item">
+                        <strong>Tugash sanasi</strong>
+                        {{ subscription.end_date }}
+                    </div>
+                </div>
+            {% else %}
+                <div class="status-box">
+                    <div class="status-label">Obuna holati</div>
+                    <div class="status-text danger">Sizda faol abonement mavjud emas ❌</div>
+                    <p>Yangi abonement tanlash uchun bosh sahifaga qayting.</p>
+                </div>
+            {% endif %}
+
+            <a class="link" href="{% url 'home' %}">Bosh sahifaga qaytish</a>
+        </div>
+    </div>
+</body>
+</html>

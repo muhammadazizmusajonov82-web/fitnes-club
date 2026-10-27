@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To'lov | FitClub</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: #e2e8f0;
+        }
+        .wrap {
+            max-width: 520px;
+            margin: 80px auto;
+            background: rgba(15, 23, 42, 0.9);
+            border: 1px solid rgba(148, 163, 184, 0.3);
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        }
+        h1 {
+            margin-top: 0;
+            font-size: 2rem;
+        }
+        .plan-box {
+            background: #111827;
+            border-radius: 14px;
+            padding: 16px;
+            margin-bottom: 20px;
+            border: 1px solid #334155;
+        }
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 14px;
+        }
+        input, select {
+            width: 100%;
+            box-sizing: border-box;
+            margin-top: 8px;
+            padding: 12px 14px;
+            border-radius: 10px;
+            border: 1px solid #475569;
+            background: #0f172a;
+            color: #fff;
+        }
+        button {
+            width: 100%;
+            padding: 14px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        .back {
+            display: inline-block;
+            margin-top: 18px;
+            color: #7dd3fc;
+            text-decoration: none;
+        }
+        .messages {
+            margin-bottom: 18px;
+        }
+        .alert {
+            border-radius: 12px;
+            padding: 12px 14px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        .error { background: #7f1d1d; color: #fee2e2; }
+        .success { background: #14532d; color: #dcfce7; }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                    <div class="alert {% if 'error' in message.tags %}error{% elif 'success' in message.tags %}success{% endif %}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <h1>To'lov</h1>
+
+        <div class="plan-box">
+            <strong>{{ plan.name }}</strong><br>
+            Narx: {{ plan.price }} UZS
+        </div>
+
+        <form method="post">
+            {% csrf_token %}
+            <label>
+                To'lov turi
+                <select name="payment_method" required>
+                    <option value="cash">Naqt pul</option>
+                    <option value="card">Kartadan</option>
+                    <option value="click">Click ilovasi</option>
+                </select>
+            </label>
+
+            <label>
+                Summa (UZS)
+                <input type="number" name="amount" min="1" value="{{ plan.price }}" required>
+            </label>
+
+            <label>
+                Ism familya
+                <input type="text" name="full_name" value="{{ full_name|default:user.get_full_name|default:user.username }}" required>
+            </label>
+
+            <label>
+                Karta raqami (lokal karta tanlaganda)
+                <input type="text" name="card_number" value="{{ card_number|default:'' }}" placeholder="0000 0000 0000 0000">
+            </label>
+
+            {% if card_verified %}
+                <div class="card-owner">
+                    Karta egasi: <strong>{{ card_owner }}</strong>
+                </div>
+                <input type="hidden" name="confirm_card" value="1">
+                <button type="submit">To‘lovni tasdiqlash</button>
+            {% else %}
+                <button type="submit">Kartani tekshirish</button>
+            {% endif %}
+        </form>
+
+        <a href="{% url 'home' %}" class="back">← Bosh sahifaga qaytish</a>
+    </div>
+</body>
+</html>

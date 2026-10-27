@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitClub | Sport zali</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #0f172a, #111827 35%, #1d4ed8);
+            color: #e5e7eb;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px 80px;
+        }
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0 30px;
+        }
+        .brand {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #f8fafc;
+        }
+        .nav a {
+            color: #dbeafe;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 600;
+        }
+        .hero {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 30px;
+            align-items: center;
+            padding: 30px 0 40px;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            margin: 0 0 16px;
+            line-height: 1.1;
+        }
+        .hero p {
+            font-size: 1.1rem;
+            color: #cbd5e1;
+            line-height: 1.7;
+        }
+        .cta {
+            display: inline-block;
+            background: #22c55e;
+            color: #06220f;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 999px;
+            font-weight: 700;
+            margin-top: 18px;
+        }
+        .primary-btn {
+            box-shadow: 0 10px 25px rgba(34, 197, 94, 0.35);
+        }
+        .panel {
+            background: rgba(15, 23, 42, 0.65);
+            border: 1px solid rgba(148, 163, 184, 0.25);
+            border-radius: 18px;
+            padding: 24px;
+            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.22);
+        }
+        .welcome-hero {
+            align-items: center;
+            padding: 30px 0 20px;
+        }
+        .welcome-copy h1 {
+            font-size: 3.2rem;
+            margin: 0 0 16px;
+            line-height: 1.08;
+        }
+        .welcome-copy p {
+            font-size: 1.1rem;
+            color: #cbd5e1;
+            line-height: 1.7;
+            max-width: 620px;
+        }
+        .stats-panel ul {
+            margin: 18px 0 0;
+            padding-left: 18px;
+            color: #dbeafe;
+            line-height: 1.8;
+        }
+        .register-section {
+            margin-top: 10px;
+            margin-bottom: 40px;
+        }
+        .register-shell {
+            background: rgba(15, 23, 42, 0.7);
+            border: 1px solid rgba(125, 211, 252, 0.22);
+            border-radius: 22px;
+            padding: 28px;
+            box-shadow: 0 28px 50px rgba(8, 15, 32, 0.45);
+        }
+        .register-copy {
+            margin-bottom: 22px;
+        }
+        .small-label {
+            display: inline-block;
+            background: rgba(96, 165, 250, 0.12);
+            color: #7dd3fc;
+            border: 1px solid rgba(125, 211, 252, 0.45);
+            padding: 5px 10px;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+        .register-copy h2 {
+            margin: 12px 0 10px;
+            font-size: 2.3rem;
+        }
+        .register-copy p {
+            margin: 0;
+            color: #cbd5e1;
+            font-size: 1.05rem;
+        }
+        .register-form {
+            display: grid;
+            gap: 14px;
+            max-width: 660px;
+        }
+        .field-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .field-group label {
+            font-weight: 700;
+            color: #e2e8f0;
+        }
+        .field-group input {
+            width: 100%;
+            padding: 13px 14px;
+            border: 1px solid rgba(148, 163, 184, 0.35);
+            border-radius: 12px;
+            background: rgba(15, 23, 42, 0.8);
+            color: #f8fafc;
+            box-sizing: border-box;
+            font-size: 1rem;
+        }
+        .submit-btn {
+            margin-top: 8px;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #34d399, #22c55e);
+            color: #052e16;
+            font-size: 1.05rem;
+            font-weight: 800;
+            padding: 14px 16px;
+            cursor: pointer;
+            box-shadow: 0 20px 30px rgba(34, 197, 94, 0.25);
+        }
+        .panel h2 {
+            margin-top: 0;
+            font-size: 1.8rem;
+        }
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 22px;
+            margin-top: 30px;
+        }
+        .card {
+            background: rgba(15, 23, 42, 0.7);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            border-radius: 16px;
+            padding: 20px;
+        }
+        .card img {
+            width: 100%;
+            height: 240px;
+            object-fit: contain;
+            object-position: center;
+            border-radius: 12px;
+            margin-bottom: 16px;
+            background: #0f172a;
+            display: block;
+        }
+        .card h3 {
+            margin: 0 0 10px;
+            font-size: 1.25rem;
+        }
+        .card p {
+            color: #cbd5e1;
+            line-height: 1.6;
+            margin: 0;
+        }
+        .price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #facc15;
+            margin: 16px 0 8px;
+        }
+        .badge {
+            display: inline-block;
+            background: rgba(34, 197, 94, 0.12);
+            color: #86efac;
+            border: 1px solid rgba(34, 197, 94, 0.4);
+            padding: 6px 10px;
+            border-radius: 999px;
+            font-size: 0.8rem;
+            margin-bottom: 8px;
+        }
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+            }
+            .topbar {
+                flex-direction: column;
+                gap: 12px;
+            }
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="topbar">
+            <div class="brand">FitClub</div>
+            <nav class="nav">
+                <a href="#trainers">Trenerlar</a>
+                <a href="#workouts">Mashg'ulotlar</a>
+                <a href="#plans">Abonementlar</a>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'dashboard' %}">Kabinet</a>
+                    <a href="{% url 'logout' %}">Chiqish</a>
+                {% else %}
+                    <a href="{% url 'login' %}">Kirish</a>
+                    <a href="{% url 'register' %}">Ro'yxatdan o'tish</a>
+                {% endif %}
+            </nav>
+        </header>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert" style="background: rgba(34,197,94,0.12); border: 1px solid rgba(34,197,94,0.4); color: #dcfce7; padding: 12px 16px; border-radius: 12px; margin-bottom: 20px;">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        {% if not user.is_authenticated %}
+            <section class="hero welcome-hero">
+                <div class="welcome-copy">
+                    <div class="badge">FitClub premium fitnes</div>
+                    <h1>Hush kelibsiz FitClubga</h1>
+                    <p>
+                        Sog'liqni yaxshilash, kuchni oshirish va yanada ijobiy natijalarga erishish uchun qulay platformamizga xush kelibsiz.
+                    </p>
+                    <a href="#register" class="cta primary-btn">Kirish</a>
+                </div>
+                <div class="panel stats-panel">
+                    <h2>FitClub afzalliklari</h2>
+                    <ul>
+                        <li>Professional trenerlar va individual yondashuv</li>
+                        <li>Flex, cardio va kuch mashg'ulotlari</li>
+                        <li>Yil davomida kuchli natijalar va qo'llab-quvvatlash</li>
+                    </ul>
+                </div>
+            </section>
+
+        {% else %}
+            <section class="hero">
+                <div>
+                    <div class="badge">Sport zali va fitnes markazi</div>
+                    <h1>Sog'liq, kuch va barqarorlik uchun zamonaviy yondashuv</h1>
+                    <p>
+                        Treninglar, shaxsiy ko'rsatmalar va mos abonementlar bilan sizga qulay va natijalarga yo'naltirilgan fitnes tajribasi taqdim etamiz.
+                    </p>
+                    <a href="#plans" class="cta">Abonement tanlash</a>
+                </div>
+                <div class="panel">
+                    <h2>Why FitClub?</h2>
+                    <p>Professional trenerlar, individual yondashuv va har oy yangi natijalar.</p>
+                    <ul>
+                        <li>Yoga, Kardio va Og'ir atletika mashg'ulotlari</li>
+                        <li>Oylik abonementlar va shartnoma qulayligi</li>
+                        <li>Shaxsiy kabinetda qoldiq kunlarni kuzatib borish</li>
+                    </ul>
+                </div>
+            </section>
+        {% endif %}
+
+        <section id="trainers">
+            <h2>Trenerlar ro'yxati</h2>
+            <div class="cards">
+                {% for trainer in trainers %}
+                    <article class="card">
+                        {% if trainer.image %}
+                            <img src="{{ trainer.image.url }}" alt="{{ trainer.full_name }}">
+                        {% else %}
+                            <img src="https://via.placeholder.com/600x400?text=Trainer" alt="{{ trainer.full_name }}">
+                        {% endif %}
+                        <h3>{{ trainer.full_name }}</h3>
+                        <p><strong>Mutaxassisligi:</strong> {{ trainer.specialty }}</p>
+                        <p>{{ trainer.bio }}</p>
+                        <a href="{% url 'trainer_detail' trainer.id %}" class="cta" style="display: inline-block; margin-top: 16px;">Kirish</a>
+                    </article>
+                {% empty %}
+                    <p>Hozircha trenerlar ro'yxati mavjud emas.</p>
+                {% endfor %}
+            </div>
+        </section>
+
+        <section id="workouts" style="margin-top: 40px;">
+            <h2>Mashg'ulot turlari</h2>
+            <div class="cards">
+                {% for workout in workouts %}
+                    <article class="card">
+                        <div class="badge">{{ workout.name }}</div>
+                        <h3>{{ workout.name }}</h3>
+                        <p>{{ workout.description }}</p>
+                        <p style="margin-top: 12px;"><strong>Trenerlar:</strong>
+                            {% for trainer in workout.trainers.all %}
+                                {{ trainer.full_name }}{% if not forloop.last %}, {% endif %}
+                            {% empty %}
+                                Trenerlar belgilanmagan
+                            {% endfor %}
+                        </p>
+                    </article>
+                {% empty %}
+                    <p>Hozircha mashg'ulot turlari mavjud emas.</p>
+                {% endfor %}
+            </div>
+        </section>
+
+        <section id="plans" style="margin-top: 40px;">
+            <h2>Oylik abonement turlari</h2>
+            <div class="cards">
+                {% for plan in plans %}
+                    <article class="card">
+                        <div class="badge">{{ plan.name }}</div>
+                        <h3>{{ plan.name }}</h3>
+                        <div class="price">{{ plan.price }} UZS</div>
+                        <p>{{ plan.description }}</p>
+                        <p style="margin-top: 12px;"><strong>Amal qilish muddati:</strong> {{ plan.duration_days }} kun</p>
+                        {% if user.is_authenticated %}
+                            <a href="{% url 'buy_membership' plan.id %}" class="cta" style="margin-top: 16px; display: inline-block;">Sotib olish</a>
+                        {% else %}
+                            <a href="{% url 'register' %}" class="cta" style="margin-top: 16px;">Ro'yxatdan o'tish</a>
+                        {% endif %}
+                    </article>
+                {% empty %}
+                    <p>Hozircha abonementlar mavjud emas.</p>
+                {% endfor %}
+            </div>
+        </section>
+    </div>
+</body>
+</html>

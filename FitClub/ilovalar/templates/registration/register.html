@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitClub | Ro'yxatdan o'tish</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #0f172a, #111827 35%, #1d4ed8);
+            color: #e2e8f0;
+        }
+        .wrap {
+            max-width: 480px;
+            margin: 80px auto;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(148, 163, 184, 0.25);
+            border-radius: 18px;
+            padding: 28px;
+            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.32);
+        }
+        h2 {
+            margin-top: 0;
+            margin-bottom: 18px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+        label {
+            font-weight: 700;
+            color: #cbd5e1;
+        }
+        input {
+            width: 100%;
+            padding: 12px 14px;
+            border-radius: 10px;
+            border: 1px solid #475569;
+            background: #0f172a;
+            color: #f8fafc;
+            box-sizing: border-box;
+        }
+        button {
+            background: #22c55e;
+            color: #06220f;
+            border: none;
+            padding: 12px 18px;
+            border-radius: 10px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        .errors {
+            background: rgba(239, 68, 68, 0.12);
+            border: 1px solid rgba(239, 68, 68, 0.4);
+            color: #fecaca;
+            padding: 10px 12px;
+            border-radius: 10px;
+            margin-bottom: 12px;
+        }
+        a {
+            color: #93c5fd;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <h2>Ro'yxatdan o'tish</h2>
+
+        {% if form.errors %}
+            <div class="errors">
+                {{ form.errors }}
+            </div>
+        {% endif %}
+
+        <form method="post">
+            {% csrf_token %}
+            <div>
+                <label for="id_username">Foydalanuvchi nomi</label>
+                {{ form.username }}
+            </div>
+            <div>
+                <label for="id_email">Email</label>
+                {{ form.email }}
+            </div>
+            <div>
+                <label for="id_password1">Parol</label>
+                {{ form.password1 }}
+            </div>
+            <div>
+                <label for="id_password2">Parolni tasdiqlash</label>
+                {{ form.password2 }}
+            </div>
+            <button type="submit">Ro'yxatdan o'tish</button>
+        </form>
+
+        <a href="{% url 'login' %}">Allaqachon hisobingiz bormi? Kirish</a>
+    </div>
+</body>
+</html>

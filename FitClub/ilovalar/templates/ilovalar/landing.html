@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitClub | Toshkentdagi fitnes klubi</title>
+    <meta name="description" content="FitClub bilan sog'lom hayot va kuchli tana sari harakat qiling. Trenerlar, mashg'ulotlar va abonementlar.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}">
+    <meta property="og:title" content="FitClub | Toshkentdagi fitnes klubi">
+    <meta property="og:description" content="FitClub bilan sog'lom hayot va kuchli tana sari harakat qiling.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: #f8fafc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        .card {
+            width: min(520px, 88vw);
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(148, 163, 184, 0.25);
+            border-radius: 24px;
+            padding: 40px 28px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.28);
+            text-align: center;
+        }
+        h1 {
+            font-size: 2.4rem;
+            margin-bottom: 12px;
+        }
+        p {
+            color: #cbd5e1;
+            margin-bottom: 24px;
+            font-size: 1.05rem;
+        }
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            color: white;
+            text-decoration: none;
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>FitClubga hush kelibsiz</h1>
+        <p>Sport va sog'liq uchun eng yaxshi fitnes tajribasi.</p>
+        <a href="{% url 'register' %}" class="btn">Kirish</a>
+    </div>
+</body>
+</html>
